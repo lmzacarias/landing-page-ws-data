@@ -17,8 +17,15 @@ function HeroHome() {
   };
 
   const handleCancel = () => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    console.log('✅ - isMobile', isMobile);
     setIsModalVisible(false);
   };
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const webData = isMobile
+    ? 'https://api.whatsapp.com/send?phone=593984642595&text=%F0%9F%91%8B%20Hola%20busco%20asesoria%20en:%20%0A%20%0A%E2%9C%85%20Temas%20pregado%20%20%0A%0A'
+    : 'https://web.whatsapp.com/send?phone=593984642595&text=%F0%9F%91%8B%20Hola%20busco%20asesoria%20en:%20%0A%20%0A%E2%9C%85%20Temas%20pregado%20%20%0A%0A';
   return (
     <section className="relative">
       {/* Illustration behind hero content */}
@@ -63,7 +70,8 @@ function HeroHome() {
           <Button
             key="link"
             // icon={<WhatsAppOutlined/>}
-            href="https://web.whatsapp.com/send?phone=593984642595&text=%F0%9F%91%8B%20Hola%20busco%20asesoria%20en:%20%0A%20%0A%E2%9C%85%20Temas%20pregado%20%20%0A%0A"
+
+            href={webData}
             target="_blank"
             type="primary"
             onClick={handleOk}
@@ -85,9 +93,6 @@ function HeroHome() {
         <br />
         <br />
         <Checkbox>Clases</Checkbox>
-
-
-       
       </Modal>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -99,10 +104,9 @@ function HeroHome() {
               className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
               data-aos="zoom-y-out"
             >
-              Análisis de datos{' '}
-              <br />
+              Análisis de datos <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-              Asesor
+                Asesor
               </span>
             </h1>
             <div className="max-w-3xl mx-auto">
